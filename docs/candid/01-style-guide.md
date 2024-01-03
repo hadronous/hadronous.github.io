@@ -9,7 +9,7 @@ Candid is a serialization format for the Internet Computer. It is used to define
 
 ## Motivation
 
-Canisters are written in a variety of languages, as are the clients that interact with canisters, while Candid is designed to be language agnostic. This means that Candid interfaces should follow a consistent pattern that is not biased by the language used to write the canister interfaces it is describing.
+Canisters and their client interactions are written in various languages. However, Candid, which is language-agnostic, describes these interfaces. Therefore, Candid interfaces should maintain a consistent pattern, unbiased by the language used in the canister interfaces they describe.
 
 ## Naming
 
@@ -33,7 +33,7 @@ type post = record {};
 
 :::tip[**Do**]
 
-**Do** use `PascalCase` casing for type definitions consisently.
+**Do** use `PascalCase` casing for type definitions consistently.
 
 ```protobuf
 type User = record {};
@@ -70,7 +70,7 @@ type Post = record {
 
 :::tip[**Do**]
 
-**Do** use `lower_snake_case` casing for field definitions consisently.
+**Do** use `lower_snake_case` casing for field definitions consistently.
 
 ```protobuf
 type User = record {
@@ -109,13 +109,14 @@ type UserRole = variant {
 
 :::tip[**Do**]
 
-**Do** use `lower_snake_case` casing for variant definitions consisently.
+**Do** use `lower_snake_case` casing for variant definitions consistently.
 
 ```protobuf
 type UserRole = variant {
   admin;
   moderator;
   user;
+  super_user;
 };
 ```
 
@@ -142,7 +143,7 @@ service : {
 
 :::tip[**Do**]
 
-**Do** use `lower_snake_case` casing for service method definitions consisently.
+**Do** use `lower_snake_case` casing for service method definitions consistently.
 
 ```protobuf
 service : {
@@ -174,7 +175,7 @@ type UserPost = record {
 
 :::tip[**Do**]
 
-**Do** use type alises in tuples.
+**Do** use type aliases in tuples.
 
 ```protobuf
 type UserId = nat64;
@@ -192,11 +193,11 @@ type UserPost = record {
 
 Use `type` aliases to define common types that are used in multiple places.
 
-This can help with readability and also make it easier to change the underlying type in the future.
+This can help with readability and make it easier to change the underlying type in the future.
 
 :::danger[**Don't**]
 
-**Don't** define common types using using built-in Candid types.
+**Don't** define common types using built-in Candid types.
 
 ```protobuf
 type User = record {
@@ -215,7 +216,7 @@ type Post = record {
 
 :::tip[**Do**]
 
-**Do** define common types with type alises.
+**Do** define common types with type aliases.
 
 ```protobuf
 type UserId = nat64;
@@ -239,7 +240,7 @@ type Post = record {
 
 Use separate request and response types for each service method. Name them `{MethodName}Request` and `{MethodName}Reponse` respectively.
 
-This allows for changes to a single service method without affecting other methods. It may be tempting to reuse common request or response types for multiple methods, but over time this can lead to a lot of messy coupling between methods. Unique request and response types also allows for readers to quickly understand the purpose of each type, without needing to explicitly check the service method that it is used for.
+This allows for changes to a single service method without affecting other methods. It may be tempting to reuse common request or response types for multiple methods, but over time this can lead to a lot of messy coupling between methods. Unique request and response types also allow readers to quickly understand the purpose of each type, without needing to explicitly check the service method that it is used for.
 
 :::danger[**Don't**]
 
