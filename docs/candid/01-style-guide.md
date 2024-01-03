@@ -102,6 +102,7 @@ type UserRole = variant {
   Admin;
   MODERATOR;
   user;
+  superUser;
 };
 ```
 
